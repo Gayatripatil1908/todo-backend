@@ -6,6 +6,7 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
+app.use(express.json());
 
 app.use(cors({
  
@@ -15,7 +16,7 @@ app.use(cors({
 //   origin: process.env.CORS_ORIGIN
 // }));
 
-app.use(express.json());
+
 
 const TODO_ITEMS = [
   {
@@ -35,6 +36,12 @@ const TODO_ITEMS = [
     createdAt: new Date().toISOString(),
   },
 ];
+
+app.get('/',(req,res)=>{
+    res.json({
+        message: "welcome to Expense Tracker API"
+    })
+})
 
 app.get("/todos", (req, res) => {
   res.json({
